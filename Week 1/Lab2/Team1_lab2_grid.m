@@ -3,8 +3,8 @@
 
 %% Prepare Data
 clc; clear; close all;
-KSI = importdata('ksi2_N_100_sigma_7_L1_1000_delta_10.mat');
-% KSI = importdata('ksi1_N_100_000_sigma_7_L1_1000_delta_10.mat');
+KSI = importdata('data for lab\group1\ksi2_N_100_sigma_7_L1_1000_delta_10.mat');
+% KSI = importdata('data for lab\group1\ksi1_N_100_000_sigma_7_L1_1000_delta_10.mat');
 
 %% Determine unknown vector X
 n = length(KSI);
