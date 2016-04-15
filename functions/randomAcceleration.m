@@ -10,8 +10,8 @@ function [ X, Measurments, Acc, Noise ] = randomAcceleration( n, sigmaW, sigmaN,
     Vel(1) = v1;
 
     for i = 2:n
-        Vel(i) = Vel(i-1) + Acc(i)*t;
-        X(i) = X(i-1) + Vel(i-1)*t + (Acc(i)*t^2)/2;
+        Vel(i) = Vel(i-1) + Acc(i-1)*t;
+        X(i) = X(i-1) + Vel(i-1)*t + (Acc(i-1)*t^2)/2;
     end
 
     Measurments = X + Noise;
