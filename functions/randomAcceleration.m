@@ -1,3 +1,4 @@
+
 function [ X, Measurments, Acc, Noise ] = randomAcceleration( n, sigmaW, sigmaN, x1, v1, t)
 
     Acc = normrnd(0,sigmaW,1,n);
