@@ -1,0 +1,17 @@
+function [ Arr ] = gaussMarkov( n, sigmaA, sigmaXi, lambda, t )
+    
+    sigmaZeta = sqrt(1-e^(-2*lambda*t));
+    Zeta = sigmaZeta * sigmaA * normrnd(0, sigmaXi, 1, n);
+
+    Arr = zeroes(1,n);
+    Arr(1)= normrnd(0, sigmaA);
+
+    lambda = 1000;
+    correlKoef = exp(-2*lambda*t);
+
+    for i=2:n
+        Arr(i) = correlKoef * Arr(i-1) + Zeta(i);
+    end
+
+end
+

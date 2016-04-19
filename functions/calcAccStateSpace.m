@@ -1,8 +1,6 @@
-function [ X, Measurments, A, Noise ] = rndAccStateSpace( n, sigmaA, sigmaN, x1, v1, t, F, G, H )
+function [ X, Z ] = calcAccStateSpace( A, Noise, x1, v1, F, G, H )
  
-    A = normrnd(0,sigmaA,1,n);
-    Noise = normrnd(0,sigmaN,1,n);
-
+    n=length(A);
     X = zeros(2, n);
     Z = zeros(1, n);
     X(:, 1) = [x1; v1];
