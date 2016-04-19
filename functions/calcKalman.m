@@ -8,7 +8,7 @@ function [ Xk, SigmaX ] = calcKalman(Z, sigmaA, sigmaN, x1, v1, F, G, H, bias )
     Q=sigmaA^2 * (G*G');
     P=[10000, 0; 0, 10000];
     SigmaX = zeros(1,n);
-    SigmaX(1) = P(1,1);
+    SigmaX(1) = sqrt(P(1,1));
     
     for i=2:n
         P=F*P*F'+Q;
