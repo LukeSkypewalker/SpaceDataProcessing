@@ -1,4 +1,4 @@
-function [ Xk, SigmaX ] = calcKalman(Z, sigmaA, sigmaN, x1, v1, F, G, H, bias )
+function [ Xk, SigmaX ] = calcKalman(Z, sigmaA, sigmaN, x1, v1, F, G, H, P, bias )
   
     n=length(Z);
    
@@ -6,7 +6,7 @@ function [ Xk, SigmaX ] = calcKalman(Z, sigmaA, sigmaN, x1, v1, F, G, H, bias )
     Xk(:, 1) = [x1; v1];
 
     Q=sigmaA^2 * (G*G');
-    P=[10000, 0; 0, 10000];
+   
     SigmaX = zeros(1,n);
     SigmaX(1) = sqrt(P(1,1));
     
