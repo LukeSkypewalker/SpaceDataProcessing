@@ -4,8 +4,8 @@ close all
 data=importdata('data_group1.mat') %uploading file with data
 
 
-sunSpot= data(:,5)'; %rearrenge data to colomns for more convenience
-flux= data(:,4)';
+sunSpot = data(:,5)'; %rearrenge data to colomns for more convenience
+flux = data(:,4)';
 Time = (data(:,3)-717428)./365 + 1964;
 
 m=13;
