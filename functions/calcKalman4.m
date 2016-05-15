@@ -1,4 +1,4 @@
-function [ Xk,Dmextr,Dmfiltr,Bmextr,Bmfiltr, R] = calcKalman4(Z, sigmaA, sigmaD, sigmaB, Dm, Bm, F, G, H, P, bias )
+function [ Xk,Dmextr,Dmfiltr,Bmextr,Bmfiltr, R, CondNum,FilterGainK] = calcKalman4(Z, sigmaA, sigmaD, sigmaB, Dm, Bm, F, G, H, P, bias )
   
     n = length(Z(1,:));
    
@@ -8,6 +8,8 @@ function [ Xk,Dmextr,Dmfiltr,Bmextr,Bmfiltr, R] = calcKalman4(Z, sigmaA, sigmaD,
     Dmfiltr=zeros(1,n);
     Bmextr=zeros(1,n);
     Bmfiltr=zeros(1,n);
+    CondNum=zeros(1,n);
+    FilterGainK=zeros(1,n);
     
     Q = sigmaA * (G*G');
    
@@ -22,7 +24,11 @@ function [ Xk,Dmextr,Dmfiltr,Bmextr,Bmfiltr, R] = calcKalman4(Z, sigmaA, sigmaD,
         R(2,1)=sin(Bm(i))*cos(Bm(i))*((sigmaD^2)-(Dm(i)^2)*(sigmaB^2));
         R(2,2)=(sigmaD^2)*(cos(Bm(i)))^2+(Dm(i)^2)*(sigmaB^2)*(sin(Bm(i)))^2;
         
+        CondNum(i)=cond(R);
+        
         K=P*H'*inv((H*P*H'+R));
+        
+        FilterGainK(i)=K(1,1);
         
         Xk(:,i) = F*Xk(:, i-1) + G*bias;
         
